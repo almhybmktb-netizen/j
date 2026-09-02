@@ -25,8 +25,8 @@ MAX_ATTEMPTS = 1_000_000
 PROGRESS_FILE = "sh.txt"
 
 # عدد المحاولات بين كل عملية حفظ وطباعة تقدم
-SAVE_INTERVAL = 100
-PRINT_INTERVAL = 1000
+SAVE_INTERVAL = 10
+PRINT_INTERVAL = 10
 
 def load_progress():
     if os.path.exists(PROGRESS_FILE):

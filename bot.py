@@ -20,7 +20,7 @@ BASE_DATA = {
 }
 
 # 🔹 كلمة المرور الأولية
-initial_password = 142800730
+initial_password = 0
 MAX_ATTEMPTS = 5000000000000000000000000  # أقصى عدد من المحاولات (سيتم زيادة password كل محاولة)
 
 def get_access_token():

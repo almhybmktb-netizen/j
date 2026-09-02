@@ -1,16 +1,13 @@
-Entername: Run Bot
+name: Run Bot
 
 on:
-  # جدولة التشغيل كل ساعة (يمكنك تغيير التوقيت)
   schedule:
     - cron: '0 * * * *'
-  # أو تشغيل يدوي من واجهة Actions
   workflow_dispatch:
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,7 +28,7 @@ jobs:
           MAX_ATTEMPTS: ${{ secrets.MAX_ATTEMPTS }}
         run: python bot.py
 
-      - name: Commit and push updated sh.json (if changed)
+      - name: Commit and push updated sh.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

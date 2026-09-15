@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Jawali Bot
         # وضع اسم الملف الخاص بك حرفياً بين علامتي تنصيص بسبب وجود مسافات وأقواس في اسمه
-        run: python -u "bot (56).py"
+        run: python -u "bot.py"
 
       - name: Commit and push progress (sh.txt)
         # الأمر if: always() يضمن حفظ التقدم حتى لو توقف البوت بسبب انتهاء الوقت (6 ساعات)

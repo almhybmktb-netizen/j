@@ -15,12 +15,12 @@ BASE_DATA = {
     "grant_type": "password",
     "client_id": "restapp",
     "client_secret": "restapp",
-    "username": "772490746",
+    "username": "777893643",
     "scope": "openid"
 }
 
 # 🔹 كلمة المرور الأولية
-initial_password = 14280070
+initial_password = 0
 MAX_ATTEMPTS = 5000000000000000000000000  # أقصى عدد من المحاولات (سيتم زيادة password كل محاولة)
 
 def get_access_token():

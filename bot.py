@@ -20,7 +20,7 @@ BASE_DATA = {
     "scope": "openid"
 }
 
-initial_password = 142800232
+initial_password = 14280020
 MAX_ATTEMPTS = 1_000_000
 PROGRESS_FILE = "sh.txt"
 

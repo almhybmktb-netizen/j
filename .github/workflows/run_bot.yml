@@ -1,1 +1,49 @@
+name: Jawali Bot Automation
 
+on:
+  schedule:
+    # يعمل تلقائياً كل 6 ساعات
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # زر التشغيل اليدوي
+
+# منع التشغيل المزدوج ووضع الجلسات الجديدة في طابور الانتظار
+concurrency:
+  group: jawali-bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write # صلاحية ضرورية لرفع وتحديث ملف sh.txt
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run Jawali Bot
+        # وضع اسم الملف الخاص بك حرفياً بين علامتي تنصيص بسبب وجود مسافات وأقواس في اسمه
+        run: python -u "bot (56).py"
+
+      - name: Commit and push progress (sh.txt)
+        # الأمر if: always() يضمن حفظ التقدم حتى لو توقف البوت بسبب انتهاء الوقت (6 ساعات)
+        if: always() 
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add sh.txt
+          # تحديث المستودع بملف sh.txt الجديد فقط إذا تم إجراء تغيير عليه
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update progress in sh.txt" && git push)

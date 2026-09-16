@@ -32,14 +32,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install -r requirements.txt
 
       - name: Run Jawali Bot
-        # وضع اسم الملف الخاص بك حرفياً بين علامتي تنصيص بسبب وجود مسافات وأقواس في اسمه
+        # وضع اسم الملف الخاص بك حرفياً بين علامتي تنصيص
         run: python -u "bot.py"
 
       - name: Commit and push progress (sh.txt)
-        # الأمر if: always() يضمن حفظ التقدم حتى لو توقف البوت بسبب انتهاء الوقت (6 ساعات)
+        # الأمر if: always() يضمن حفظ التقدم حتى لو توقف البوت
         if: always() 
         run: |
           git config --global user.name "GitHub Actions Bot"

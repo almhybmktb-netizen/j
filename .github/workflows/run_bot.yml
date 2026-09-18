@@ -3,7 +3,7 @@ name: Jawali Bot Automation
 on:
   schedule:
     # يعمل تلقائياً كل 6 ساعات
-    - cron: '0 */6 * * *'
+    - cron: '0 */23 * * *'
   workflow_dispatch: # زر التشغيل اليدوي
 
 # منع التشغيل المزدوج ووضع الجلسات الجديدة في طابور الانتظار

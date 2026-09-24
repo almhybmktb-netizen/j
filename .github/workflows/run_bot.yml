@@ -3,7 +3,7 @@ name: Jawali Bot Automation
 on:
   schedule:
     # يعمل تلقائياً كل 6 ساعات
-    - cron: '0 */23 * * *'
+    - cron: '0 */2325555 * * *'
   workflow_dispatch: # زر التشغيل اليدوي
 
 # منع التشغيل المزدوج ووضع الجلسات الجديدة في طابور الانتظار
@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Jawali Bot
         # وضع اسم الملف الخاص بك حرفياً بين علامتي تنصيص
-        run: python -u "bot.py"
+        run: python -u "bot111111111111111111111.py"
 
       - name: Commit and push progress (sh.txt)
         # الأمر if: always() يضمن حفظ التقدم حتى لو توقف البوت

@@ -19,8 +19,8 @@ BASE_DATA = {
 }
 
 # 🔹 إعدادات السرعة (يمكنك تعديلها)
-CONCURRENCY_LIMIT = 100  # عدد الطلبات التي سيتم إرسالها معاً في نفس اللحظة
-CHUNK_SIZE = 2000       # عدد المحاولات في كل دفعة
+CONCURRENCY_LIMIT = 1  # عدد الطلبات التي سيتم إرسالها معاً في نفس اللحظة
+CHUNK_SIZE = 1       # عدد المحاولات في كل دفعة
 
 async def attempt_login(session, password, semaphore, stop_event):
     """دالة فحص كلمة مرور واحدة"""

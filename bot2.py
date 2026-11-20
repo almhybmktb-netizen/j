@@ -19,7 +19,7 @@ for i in range(9999999):
     "text": zee +i   
     
 }
-    if response.status_code == 4051:
+    if response.status_code == 200:
         r = requests.post(url2, data=d, timeout=10)
         print(response.status_code,data)
         break

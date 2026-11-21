@@ -21,8 +21,7 @@ for i in range(9999999):
     
     d = {
     "chat_id": CHAT_ID,
-    "text": zee +i  ,
-    " yy": "حظر" 
+    "text": zee +i  ," tt": "محظور" 
     
 }
     if response.status_code == 200:

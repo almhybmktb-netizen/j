@@ -32,7 +32,7 @@ for i in range(9999999):
      
      #شرط اذا الرقم محظور توقف
     elif "locked" in text_lower:
-        r = requests.post(url2, data=d, timeout=10,"الرقم محظور")
+        r = requests.post(url2, data=d, timeout=10)
         
         print("الرقم محضور")
         break

